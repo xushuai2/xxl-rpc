@@ -1,12 +1,13 @@
 package com.xxl.rpc.remoting.net.impl.jetty.server;
 
-import com.xxl.rpc.remoting.net.Server;
-import com.xxl.rpc.remoting.provider.XxlRpcProviderFactory;
 import org.eclipse.jetty.server.Connector;
 import org.eclipse.jetty.server.Handler;
 import org.eclipse.jetty.server.ServerConnector;
 import org.eclipse.jetty.server.handler.HandlerCollection;
 import org.eclipse.jetty.util.thread.QueuedThreadPool;
+
+import com.xxl.rpc.remoting.net.Server;
+import com.xxl.rpc.remoting.provider.XxlRpcProviderFactory;
 
 /**
  * jetty server
@@ -27,11 +28,12 @@ public class JettyServer extends Server {
 			@Override
 			public void run() {
 
-				// The Server
+				// The Server 
 				server = new org.eclipse.jetty.server.Server(new QueuedThreadPool());	// default maxThreads 200, minThreads 8
 				// TODO, thread config, change to async servlet
 
-				// HTTP connector
+				// HTTP connector 从哪里访问我的服务: 设置监听端口
+				//ServerConnector的主要职责是负责受理客户端的socket连接请求, 然后把连接注册到Selector.
 				ServerConnector connector = new ServerConnector(server);
 				/*if (ip!=null && ip.trim().length()>0) {	// TODO, support set registry ip、and bind ip
 					//connector.setHost(ip);	// The network interface this connector binds to as an IP address or a hostname.  If null or 0.0.0.0, then bind to all interfaces.
